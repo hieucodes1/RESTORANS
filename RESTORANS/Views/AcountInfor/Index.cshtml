@@ -1,0 +1,53 @@
+﻿@using RESTORANS.Utilities;
+@model RESTORANS.Models.Customers;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main container-xxl py-5 d-flex flex-column align-items-center">
+    <div class="pagetitle">
+        <h2 class="text-success"> Thông tin tài khoản cá nhân</h2>
+    </div>
+    <section class="section dashboard">
+        <div class="row">
+            <form asp-controller="AcountInfor" asp-action="Edit">
+            <div class="col-12">
+                    <div class="col-12 d-none">
+                        <label class="form-label" asp-for="CustomersID">CustomerID</label>
+                        <input type="text" asp-for="CustomersID" class="form-control">
+                    </div>
+                <div class="col-12">
+                    <label class="form-label">Họ và Tên *</label>
+                    <input type="text" asp-for="FullName" class="form-control">
+                </div>
+                    <div class="col-12">
+                        <label class="form-label">Địa chỉ Email</label>
+                        <input type="text" asp-for="Email" class="form-control">
+                    </div>
+                    <div class="col-12 d-none">
+                        <label class="form-label ">Images</label>
+                        <input type="text" asp-for="Thumb" value="@function._Images" class="form-control">
+                    </div>
+                <div class="col-12">
+                    <label class="form-label">Số điện thoại</label>
+                    <input type="text" asp-for="Phone" class="form-control">
+                </div>
+                
+                <div class="col-12">
+                    <label>Thay đổi mật khẩu</label>
+                </div>
+               
+                <div class="col-12">
+                    <label class="form-label">Mật khẩu mới(bỏ trống nếu không thay đổi)</label>
+                    <input type="text" asp-for="PassWord" value="" class="form-control">
+                </div>
+                <div class="col-12 mt-4">
+                    <button class="btn btn-primary w-100" type="submit">Lưu Thay Đổi</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </section>
+</main>
+

@@ -1,0 +1,70 @@
+﻿
+@using RESTORANS.Areas.Admin.Models;
+@model IList<AdminMenu>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Danh mục Admin cha</h2>
+    </div>
+
+    <p>
+        <a type="button" class="btn btn-success" asp-area="Admin" asp-controller="ManageParent" asp-action="Create">
+            <i class="bi bi-file-earmark-text me-1"></i> Thêm danh mục
+        </a>
+    </p>
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body mt-4">
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th class="col-1 text-center">#</th>
+                                    <th class="col-3 text-center">Tên Danh mục</th>
+                                    <td class="col-2 text-center">ControllerName</td>
+                                    <td class="col-2 text-center">ActionName</td>
+                                    <td class="col-1 text-center">Ẩn/hiện</td>
+                                    <th class="col-3 text-center">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center" scope="row"> @item.AdminMenuID</th>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Comment" asp-action="Details"
+                                           asp-route-id="@item.AdminMenuID" class="text-primary">@item.ItemName</a>
+                                        </td>
+                                        <td class="text-center">@item.ControllerName</td>
+                                        <td class="text-center">@item.ActionName</td>
+                                        <td class="text-center">@item.IsActive</td>
+                                        <td class="text-center">
+                                            <a asp-area="Admin" asp-controller="ManageParent" asp-action="Details"
+                                           asp-route-id="@item.AdminMenuID" class="btn btn-primary btn-sm"
+                                           title="Xem nội dung danh mục"><i class="bi bi-eye"></i></a>
+
+                                            <a asp-area="Admin" asp-controller="ManageParent" asp-action="Edit"
+                                           asp-route-id="@item.AdminMenuID" class="btn btn-primary btn-sm"
+                                           title="Sửa nội dung danh mục"><i class="bi bi-pencil"></i></a>
+
+                                            <a asp-area="Admin" asp-controller="ManageParent" asp-action="Delete"
+                                           asp-route-id="@item.AdminMenuID" class="btn btn-danger btn-sm"
+                                           title="Xóa nội dung danh mục"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

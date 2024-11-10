@@ -1,0 +1,30 @@
+﻿@model RESTORANS.Models.Customers;
+@using RESTORANS.Models
+<!-- Blog Start -->
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xem Chi tài khoản </h2>
+    </div>
+    <div class="container-fluid  wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="mb-5">
+                        <div class="card-body">
+                            <h5 class="mb-4">tên Khách hàng : @Html.DisplayFor(model => model.FullName)</h5>
+                            <h5 class="mb-4"> số điện thoại : @Html.DisplayFor(model => model.Phone)</h5>
+                            <lable>Ảnh đại diện :</lable>
+                            <img style="width = 500px" src="@Html.DisplayFor(m=>m.Thumb)" />
+                            <p class="card-text">ngày sinh : @Html.Raw(Model.Birthday)</p>
+                            <p class="card-text">địa chỉ : @Html.Raw(Model.Address)</p>
+                            <p class="card-text">Email : @Html.Raw(Model.Email)</p>
+                        </div>
+                    </div>
+                    <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
+                        <i class="bi bi-arrow-left-circle"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

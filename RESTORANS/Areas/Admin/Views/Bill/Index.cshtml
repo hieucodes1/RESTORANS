@@ -1,0 +1,67 @@
+﻿@using RESTORANS.Models;
+@model IList<ViewOrderCustomer>
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2> Danh sách đơn đặt bàn</h2>
+    </div>
+    <section class="section dashboard">
+        <div class="row">
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body mt-4">
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th class="col-1 text-center">#</th>
+                                    <th class="col-2 text-center">Tên khách hàng</th>
+                                    <td class="col-2 text-center">số điện thoại</td>
+                                    <td class="col-2 text-center">ngày đặt</td>
+                                    <td class="col-2 text-center">ngày đến</td>
+                                    <td class="col-1 text-center">số người</td>
+                                    <td class="col-1 text-center">Ẩn/hiện</td>
+                                    <th class="col-3 text-center">Chức năng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <th class="text-center" scope="row">@item.OrderID</th>
+                                        <td>
+                                            <a asp-area="Admin" asp-controller="Bill" asp-action="Details"
+                                           asp-route-id="@item.OrderID" class="text-primary">@item.FullName</a>
+                                        </td>
+                                        <td class="text-center">@item.Description</td>
+                                        <td class="text-center">@item.OrderDate</td>
+                                        <td class="text-center">@item.ArrivalDate</td>
+                                        <td class="text-center">@item.People</td>
+                                        <td class="text-center">@item.IsActive</td>
+                                        <td class="text-center">
+                                            <a asp-area="Admin" asp-controller="Bill" asp-action="Details"
+                                           asp-route-id="@item.OrderID" class="btn btn-primary btn-sm"
+                                           title="Xem đơn đặt bàn"><i class="bi bi-eye"></i></a>
+
+                                            <a asp-area="Admin" asp-controller="Bill" asp-action="Edit"
+                                           asp-route-id="@item.OrderID" class="btn btn-primary btn-sm d-none"
+                                           title="Sửa đơn đặt bàn"><i class="bi bi-pencil"></i></a>
+
+                                            <a asp-area="Admin" asp-controller="Bill" asp-action="Delete"
+                                           asp-route-id="@item.OrderID" class="btn btn-danger btn-sm"
+                                           title="hủy đơn đặt bàn"><i class="bi bi-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

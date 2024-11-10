@@ -1,0 +1,26 @@
+﻿@model RESTORANS.Models.Post;
+@using RESTORANS.Models
+<!-- Blog Start -->
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xem Bài viết</h2>
+    </div>
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <div class="mb-5">
+                        <div class="card-body">
+                            <h5 class="mb-4">@Html.DisplayFor(model => model.Title)</h5>
+                            <img style="width = 500px" src="@Html.DisplayFor(m=>m.Images)" />
+                            <p class="card-text">@Html.Raw(Model.Contents)</p>
+                        </div>
+                    </div>
+                     <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
+                        <i class="bi bi-arrow-left-circle"></i> Quay lại
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

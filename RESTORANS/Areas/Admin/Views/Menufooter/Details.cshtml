@@ -1,0 +1,33 @@
+﻿@model RESTORANS.Models.Menu
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Xem Menu</h2>
+    </div>
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-8">
+                    <!-- Blog Detail Start -->
+                    <div class="mb-5">
+                        <label>Tên Menu : </label>
+                        <h5 class="mb-4">@Html.DisplayFor(model => model.MenuName)</h5>
+                        <label>Mức : </label>
+                        <p>@Html.Raw(Model.Levels) </p>
+                        <label>Cấp độ : </label>
+                        <p>@Html.Raw(Model.ParentID) </p>
+                        <label>Ẩn hiện : </label>
+                        <p>@Html.Raw(Model.IsActive) </p>
+                        <label>Link Menu : </label>
+                        <p>@Html.Raw(Model.Link) </p>
+
+                    </div>
+                    <a asp-controller="Menu" asp-action="Index" class="btn btn-lg btn-warning p-2">Quay lại</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

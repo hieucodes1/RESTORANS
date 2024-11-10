@@ -1,0 +1,74 @@
+﻿@using RESTORANS.Utilities;
+@model RESTORANS.Areas.Admin.Models.AdminMenu;
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h2>Thêm mới danh mục con</h2>
+    </div>
+    <!-- Begin Form-->
+    <form asp-action="Edit" method="post">
+
+        <div class="form-group col-md-12">
+            <label asp-for="ItemName">Tên danh mục</label>
+            <input type="text" class="form-control mb-3" asp-for="ItemName" required />
+        </div>
+        <div class="form-group col-md-12 d-none">
+            <label asp-for="ItemLevel">Level</label>
+            <input type="text" class="form-control mb-3" asp-for="ItemLevel" value="2" />
+        </div>
+        <div class="form-group col-md-6">
+            <div class="alert-danger" asp-validation-summary="ModelOnly"></div>
+            <label asp-for="ParentLevel">ParentLevel</label>
+            <select asp-for="ParentLevel" class="form-control" asp-items="@(new SelectList(ViewBag.adList, "Value","Text"))">  </select>
+        </div>
+        <div class="form-group col-md-12 d-none">
+            <label asp-for="ItemOrder">ItemOrder</label>
+            <input type="text" class="form-control mb-3" asp-for="ItemOrder" value="1" />
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="AreaName">AreaName</label>
+            <input type="text" class="form-control mb-3" asp-for="AreaName" />
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="ControllerName">ControllerName</label>
+            <input type="text" class="form-control mb-3" asp-for="ControllerName" />
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="ActionName">ActionName</label>
+            <input type="text" class="form-control mb-3" asp-for="ActionName" />
+        </div>
+        <div class="form-group col-md-12">
+            <label asp-for="ItemTarget">ItemTarget</label>
+            <input type="text" class="form-control mb-3" asp-for="ItemTarget" />
+        </div>
+        <div class="form-group col-md-12 d-none">
+            <label asp-for="Icon">Icon</label>
+            <input type="text" class="form-control mb-3" asp-for="Icon" />
+        </div>
+        <div class="form-group col-md-12 d-none">
+            <label asp-for="IdName">IdName</label>
+            <input type="text" class="form-control mb-3" asp-for="IdName" />
+        </div>
+
+        <div class="form-group col-md-6 mt-3 mb-3">
+            <label>
+                @Html.CheckBox("IsActive", false)
+                Hiển thị
+            </label>
+        </div>
+
+        <a class="btn btn-lg btn-warning p-2 mr-5" href="javascript:history.back()">
+            <i class="bi bi-arrow-left-circle"></i> Quay lại
+        </a>
+        <button type="submit" class="btn btn-lg btn-danger p-2">
+            <i class="bi bi-trassh-fill"></i> Lưu lại
+        </button>
+    </form>
+    <!-- End Form-->
+</main>
+

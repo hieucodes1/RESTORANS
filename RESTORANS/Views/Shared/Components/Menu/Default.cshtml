@@ -1,0 +1,147 @@
+﻿@using RESTORANS.Utilities;
+@model IList<Menu>
+
+<!-- Navbar & Hero Start -->
+
+<div class="container-xxl position-relative p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+        <a href="" class="navbar-brand p-0">
+            <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>ĐXH</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="fa fa-bars"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0 pe-4">
+                @foreach (var m in Model.Where(m => m.Levels == 1).OrderBy(n => n.MenuOrder))
+                {
+                    var Pid = m.MenuID;
+                    string url = function.TitlesSlugGeneration("list", m.MenuName, m.MenuID);
+                    if (!string.IsNullOrEmpty(m.Link))
+                    {
+                        url = m.Link;
+                    }
+
+                    var smenu = Model.Where(m => m.ParentID == Pid).OrderBy(n => n.MenuOrder).ToList();
+                    @if (smenu.Count == 0)
+                    {
+                        <a href="/@url" class="nav-item nav-link">@m.MenuName</a>
+                    }
+                    else
+                    {
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <div class="dropdown-menu m-0">
+                                @foreach (var smn in smenu)
+                                {
+                                    string url1 = function.TitlesSlugGeneration("list", smn.MenuName, smn.MenuID);
+                                    if (!string.IsNullOrEmpty(smn.Link))
+                                    {
+                                        url1 = smn.Link;
+                                    }
+                                    <a href="/@url1" class="dropdown-item">@smn.MenuName</a>
+
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            @*Đăng nhập đăng kí *@
+            <div class="nav-item dropdown pe-3">
+                @if (function.IsLogin())
+                {
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="@function._Images" alt="" class="rounded-circle" style="width:30px; height: 30px">
+                        <span class="d-none d-md-block dropdown-toggle ps-2 text-white">@function._UserName</span>
+
+                    </a>
+
+                    <!-- End Profile Iamge Icon -->
+                }
+                else
+                {
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <i class="fa fa-user-tie text-primary"></i>
+                        <span class="d-none d-md-block dropdown-toggle ps-2 text-primary">Đăng nhập/Đăng kí</span>
+                    </a>
+                }
+                @if (function.IsLogin())
+                {
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-white">
+                        <li class="dropdown-header text-center">
+                            <h6>@function._UserName</h6>
+                            <span>@function._Email</span>
+
+                        </li>
+                        <li>
+                            <div class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span><a href="/AcountInfor" style="margin-left: 5px">Xem thông tin </a></span>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <div class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span><a href="/CustomersOrder" style="margin-left: 5px">Xem đơn đặt bàn</a></span>
+                            </div>
+                        </li>
+                        <li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <div class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span><a href="/CustomersLogout" style="margin-left: 5px">Đăng Xuất</a></span>
+                            </div>
+                        </li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile text-white">
+                        <li class="dropdown-header text-center">
+                            <h6>Tên đăng nhập</h6>
+                            <span class="text-center">Email</span>
+                        </li>
+                        <li>
+                            <div class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span><a href="/CustomersRegister" style="margin-left:5px">Đăng Kí</a></span>
+                            </div>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <div class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span><a href="/CustomersLogin" style="margin-left: 5px">Đăng Nhập</a></span>
+                            </div>
+                        </li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-xxl py-5 bg-dark hero-header mb-5">
+        <div class="container my-5 py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 text-center text-lg-start">
+                    <h1 class="display-3 text-white animated slideInLeft">Nhà hàng ĐXH<br>Kính chào quý khách</h1>
+                    <p class="text-white animated slideInLeft mb-4 pb-2"><br><br><br></p>
+                    <a asp-controller="CustomersLogin" asp-action="Index" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Đặt bàn ngay bây giờ</a>
+                </div>
+                <div class="col-lg-6 text-center text-lg-end overflow-hidden">
+                    <img class="img-fluid" src="/img/xx.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Navbar & Hero End -->

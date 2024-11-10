@@ -1,0 +1,90 @@
+﻿
+@using RESTORANS.Utilities;
+@model RESTORANS.Models.Post;
+
+
+<!-- Blog Start -->
+<div class="container-fluid  wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-7">
+                <!-- Blog Detail Start -->
+                <div class="mb-5">
+                    
+                        <div class="card-body">
+                            <p class="card-text">@Html.Raw(Model.Contents)</p>
+                        </div>
+                       
+                </div>
+                @* Comment*@
+                @await Component.InvokeAsync("CustomerComment")
+                <form asp-controller="CustomerComment" asp-action="Create" method="post" class="row" style="position: relative">
+                   <div asp-validation-summary="All"></div>
+                    <input type="text" class="form-control mb-3 d-none" asp-for="FullName" value="@function._UserName" />
+                    <input type="text" class="form-control mb-3 d-none" asp-for="Statust" value="1" />
+                    <input type="text" class="form-control mb-3 d-none" asp-for="IsActive" value="True" />
+                    <input type="date" class="form-control mb-3 d-none" asp-for="CreatedDate"  />
+                    @if(function.IsLogin()){
+                        <div class="col-md-2">
+                            <label asp-for="Images" class="mr-2">
+                                <img src="@function._Images" class="img-fluid" style="width: 35px; height: 35px;border-radius:50%">
+                                <input type="text" class="form-control mb-3 d-none" asp-for="Images" value="@function._Images" />
+                            </label>
+                        </div>
+                    }else{
+                        <div class="col-md-2">
+                            <label asp-for="Images" class="mr-2">
+                                <img src="~/img/Hinh-nen-trang.jpg" class="img-fluid" style="width: 35px; height: 35px;border-radius:50%">
+                            </label>
+                        </div>
+                    }
+                    <div class="col-md-10" >
+                        <input type="text" class="form-control mb-3 mr-2" style="border-radius:18px; position: relative; left:-66px;" asp-for="Contents" value=" " placeceholder="bình luận" />
+                    </div>
+                    <input type="text" class="form-control mb-3 d-none" asp-for="Position" value="4"  />
+                    
+                    <div class="col-md-2" style="position: absolute; right: 39px; bottom: 16px;">
+                        <button class="btn btn-primary  mr-2" style="border-bottom-right-radius: 21%; border-top-right-radius: 21%;" type="submit">
+                            Gửi
+                        </button>
+                    </div>
+             </form>
+            </div>
+           
+            <!-- Sidebar Start -->
+            <div class="col-lg-5">
+                <!-- Search Form Start -->
+              @*  <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
+                    <div class="input-group">
+                        <input type="text" class="form-control p-3" placeholder="Tìm kiếm">
+                        <button class="btn btn-primary px-4"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>*@
+
+                <!-- Search Form End -->
+                @await Component.InvokeAsync("RecentPost")
+            </div>
+            <!-- Sidebar End -->
+        </div>
+    </div>
+</div>
+<!-- Blog End -->
+<!-- Vendor Start -->
+<div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container py-5 mb-5">
+        <div class="bg-white">
+            <div class="owl-carousel vendor-carousel">
+                <img src="img/vendor-1.jpg" alt="">
+                <img src="img/vendor-2.jpg" alt="">
+                <img src="img/vendor-3.jpg" alt="">
+                <img src="img/vendor-4.jpg" alt="">
+                <img src="img/vendor-5.jpg" alt="">
+                <img src="img/vendor-6.jpg" alt="">
+                <img src="img/vendor-7.jpg" alt="">
+                <img src="img/vendor-8.jpg" alt="">
+                <img src="img/vendor-9.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Vendor End -->

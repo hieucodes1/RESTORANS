@@ -1,0 +1,67 @@
+﻿@using RESTORANS.Models;
+@model IList<Table>
+
+<div class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="row g-0">
+        <div class="col-md-6">
+            <div class="video">
+                <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6 bg-dark d-flex align-items-center">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">Đặt bàn</h5>
+                <h1 class="text-white mb-4">Đặt bàn tại đây</h1>
+                <form method="post">
+                    <div asp-validation-summary="All"></div>
+                    <div class="row g-3">
+                        <div class="col-md-6" hidden>
+                            <label >TableID</label>
+                            <input type="text" class="form-control mb-3 "  placeceholder="Nhập tên tableID" hidden/>
+                            <span  class="alert-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input  type="text" class="form-control" id="name" placeholder="Your Name">
+                                <label >Nhập họ tên</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control"   placeholder="Your Email">
+                                <label >Nhập Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating date" id="date3" data-target-input="nearest">
+                                <input  type="text" class="form-control datetimepicker-input"  placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                <label >Ngày và giờ</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select class="form-select" id="select1">
+                                    <option value="1">1 người</option>
+                                    <option value="2">2 người</option>
+                                    <option value="3">3 người</option>
+                                </select>
+                                <label >Không có người</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea  class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
+                                <label >Đặt yêu cầu</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <a asp-controller="CustomersOrder" asp-action="Create" class="btn btn-primary w-100 py-3" type="submit">Đặt ngay bây giờ</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
